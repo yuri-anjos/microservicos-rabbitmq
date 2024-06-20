@@ -5,9 +5,13 @@ spring:
     gateway:
       routes:
         - id: clienteBridge
-          uri: lb://cliente
+          uri: lb://cliente-service
           predicates:
-            - Path=/cliente/**
+            - Path=/clientes/**
+        - id: cartaoBridge
+          uri: lb://cartao-service
+          predicates:
+            - Path=/cartoes/**
       discovery:
         locator:
           enabled: true

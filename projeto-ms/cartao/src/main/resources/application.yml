@@ -1,6 +1,6 @@
 spring:
   application:
-    name: cliente-service
+    name: cartao-service
 
 server:
   port: 0

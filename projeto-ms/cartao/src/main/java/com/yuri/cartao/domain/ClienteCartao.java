@@ -1,34 +1,33 @@
-package com.yuri.cliente.domain;
+package com.yuri.cartao.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
-public class Cliente implements Serializable {
+public class ClienteCartao implements Serializable {
 
 	@Serial
-	private static final long serialVersionUID = 3496860121796319605L;
+	private static final long serialVersionUID = -2416540661667608945L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String cpf;
-	private String nome;
-	private Integer idade;
+	@ManyToOne
+	@JoinColumn(name = "cartao_id")
+	private Cartao cartao;
+	private BigDecimal limite;
 
-	public Cliente() {
-	}
-
-	public Cliente(String cpf, String nome, Integer idade) {
-		this.cpf = cpf;
-		this.nome = nome;
-		this.idade = idade;
+	public ClienteCartao() {
 	}
 
 	public Long getId() {
@@ -47,42 +46,42 @@ public class Cliente implements Serializable {
 		this.cpf = cpf;
 	}
 
-	public String getNome() {
-		return nome;
+	public Cartao getCartao() {
+		return cartao;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setCartao(Cartao cartao) {
+		this.cartao = cartao;
 	}
 
-	public Integer getIdade() {
-		return idade;
+	public BigDecimal getLimite() {
+		return limite;
 	}
 
-	public void setIdade(Integer idade) {
-		this.idade = idade;
+	public void setLimite(BigDecimal limite) {
+		this.limite = limite;
 	}
 
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		Cliente cliente = (Cliente) o;
-		return Objects.equals(id, cliente.id) && Objects.equals(cpf, cliente.cpf);
+		ClienteCartao that = (ClienteCartao) o;
+		return Objects.equals(id, that.id);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, cpf);
+		return Objects.hash(id);
 	}
 
 	@Override
 	public String toString() {
-		return "Cliente{" +
+		return "ClienteCartao{" +
 				"id=" + id +
 				", cpf='" + cpf + '\'' +
-				", nome='" + nome + '\'' +
-				", idade=" + idade +
+				", cartao=" + cartao +
+				", limite=" + limite +
 				'}';
 	}
 }

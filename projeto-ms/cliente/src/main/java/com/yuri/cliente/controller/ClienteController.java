@@ -3,6 +3,8 @@ package com.yuri.cliente.controller;
 import com.yuri.cliente.domain.Cliente;
 import com.yuri.cliente.dto.SalvarClienteRequest;
 import com.yuri.cliente.service.ClienteService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,10 +20,18 @@ import java.net.URI;
 @RequestMapping("/clientes")
 public class ClienteController {
 
+	private final Logger log = LoggerFactory.getLogger(ClienteController.class);
+
 	private final ClienteService clienteService;
 
 	public ClienteController(ClienteService clienteService) {
 		this.clienteService = clienteService;
+	}
+
+	@GetMapping("/health")
+	public String status() {
+		log.info("Health Check!");
+		return "ok";
 	}
 
 	@GetMapping
