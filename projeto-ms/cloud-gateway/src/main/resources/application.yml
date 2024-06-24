@@ -4,14 +4,18 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: clienteBridge
+        - id: cliente-service-link
           uri: lb://cliente-service
           predicates:
             - Path=/clientes/**
-        - id: cartaoBridge
+        - id: cartao-service-link
           uri: lb://cartao-service
           predicates:
             - Path=/cartoes/**
+        - id: avaliador-credito-service-link
+          uri: lb://avaliador-credito-service
+          predicates:
+            - Path=/avaliacoes-credito/**
       discovery:
         locator:
           enabled: true

@@ -34,7 +34,7 @@ public class ClienteController {
 		return "ok";
 	}
 
-	@GetMapping
+	@GetMapping(params = "cpf")
 	public ResponseEntity<Cliente> buscarPorCpf(@RequestParam String cpf) {
 		var cliente = clienteService.findByCpf(cpf);
 		return cliente
