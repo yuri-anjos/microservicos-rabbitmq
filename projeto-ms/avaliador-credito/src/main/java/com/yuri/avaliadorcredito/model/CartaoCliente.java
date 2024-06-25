@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class CartaoCliente {
 	private String nome;
-	private String bandeiraCartaoEnum;
+	private String bandeira;
 	private BigDecimal limite;
 
 	public CartaoCliente() {
@@ -18,12 +18,12 @@ public class CartaoCliente {
 		this.nome = nome;
 	}
 
-	public String getBandeiraCartaoEnum() {
-		return bandeiraCartaoEnum;
+	public String getBandeira() {
+		return bandeira;
 	}
 
-	public void setBandeiraCartaoEnum(String bandeiraCartaoEnum) {
-		this.bandeiraCartaoEnum = bandeiraCartaoEnum;
+	public void setBandeira(String bandeira) {
+		this.bandeira = bandeira;
 	}
 
 	public BigDecimal getLimite() {

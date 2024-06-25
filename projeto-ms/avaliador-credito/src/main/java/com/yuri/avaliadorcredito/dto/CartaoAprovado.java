@@ -3,11 +3,20 @@ package com.yuri.avaliadorcredito.dto;
 import java.math.BigDecimal;
 
 public class CartaoAprovado {
+	private Long id;
 	private String cartao;
 	private String bandeira;
 	private BigDecimal limiteAprovado;
 
 	public CartaoAprovado() {
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getCartao() {
