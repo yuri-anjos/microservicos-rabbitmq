@@ -7,8 +7,20 @@ server:
 
 eureka:
   client:
-    service-url:
-      default-zone: http://localhost:8761/eureka
+    serviceUrl:
+      defaultZone: http://ms-eureka-server:err-vremss-keaue@localhost:8761/eureka
   instance:
-    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
-    prefer-ip-address: true
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    preferIpAddress: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+logging:
+  file:
+    name: ./logs/log-file.log
+  level:
+    root: info

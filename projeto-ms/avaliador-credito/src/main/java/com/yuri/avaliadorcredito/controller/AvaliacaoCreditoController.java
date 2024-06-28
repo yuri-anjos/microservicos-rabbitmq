@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/avaliacoes-credito")
 public class AvaliacaoCreditoController {
 
-	private final Logger log = LoggerFactory.getLogger(AvaliacaoCreditoController.class);
+	private static final Logger log = LoggerFactory.getLogger(AvaliacaoCreditoController.class);
 
 	private final AvaliacaoCreditoService avaliacaoCreditoService;
 

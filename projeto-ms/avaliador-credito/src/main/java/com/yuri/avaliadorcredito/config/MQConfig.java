@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MQConfig {
 
-	@Value("${mq.queues.emissao-cartao}")
+	@Value("${mq.queues.emissaoCartao}")
 	private String emissaoCartaoQueue;
 
 	@Bean(name = "queueEmissaoCartao")

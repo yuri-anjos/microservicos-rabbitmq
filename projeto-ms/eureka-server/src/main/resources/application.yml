@@ -1,11 +1,15 @@
 spring:
   application:
     name: eureka-server
+  security:
+    user:
+      name: ms-eureka-server
+      password: err-vremss-keaue
 
 server:
   port: 8761
 
 eureka:
   client:
-    register-with-eureka: false
-    fetch-registry: false
+    registerWithEureka: false
+    fetchRegistry: false

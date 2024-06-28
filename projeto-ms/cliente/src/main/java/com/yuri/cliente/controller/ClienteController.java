@@ -20,7 +20,7 @@ import java.net.URI;
 @RequestMapping("/clientes")
 public class ClienteController {
 
-	private final Logger log = LoggerFactory.getLogger(ClienteController.class);
+	private static final Logger log = LoggerFactory.getLogger(ClienteController.class);
 
 	private final ClienteService clienteService;
 

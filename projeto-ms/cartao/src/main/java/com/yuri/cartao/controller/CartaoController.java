@@ -22,7 +22,7 @@ import java.util.List;
 @RequestMapping("/cartoes")
 public class CartaoController {
 
-	private final Logger log = LoggerFactory.getLogger(CartaoController.class);
+	private static final Logger log = LoggerFactory.getLogger(CartaoController.class);
 
 	private final CartaoService cartaoService;
 	private final ClienteCartaoService clienteCartaoService;

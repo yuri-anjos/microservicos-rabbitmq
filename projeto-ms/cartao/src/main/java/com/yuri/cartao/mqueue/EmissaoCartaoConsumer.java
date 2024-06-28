@@ -8,12 +8,13 @@ import com.yuri.cartao.repository.ClienteCartaoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
 @Component
 public class EmissaoCartaoConsumer {
 
-	private final Logger log = LoggerFactory.getLogger(EmissaoCartaoConsumer.class);
+	private static final Logger log = LoggerFactory.getLogger(EmissaoCartaoConsumer.class);
 	private final CartaoRepository cartaoRepository;
 	private final ClienteCartaoRepository clienteCartaoRepository;
 
@@ -22,10 +23,10 @@ public class EmissaoCartaoConsumer {
 		this.clienteCartaoRepository = clienteCartaoRepository;
 	}
 
-	@RabbitListener(queues = "${mq.queues.emissao-cartao}")
-	public void receberSolicitacaoEmissaoCartao(String payload) {
+	@RabbitListener(queues = "${mq.queues.emissaoCartao}")
+	public void receberSolicitacaoEmissaoCartao(@Payload String payload) {
 		try {
-			log.info("Payload: {}", payload);
+			log.info("receberSolicitacaoEmissaoCartao, payload: {}", payload);
 			var mapper = new ObjectMapper();
 			var solicitacao = mapper.readValue(payload, EmissaoCartaoRequest.class);
 
@@ -36,7 +37,7 @@ public class EmissaoCartaoConsumer {
 			clienteCartao.setLimite(solicitacao.getLimiteLiberado());
 			clienteCartaoRepository.save(clienteCartao);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("receberSolicitacaoEmissaoCartao, erro ao receber solicitacao de emissao de cartao: {}", e.getMessage());
 		}
 	}
 }
