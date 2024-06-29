@@ -1,0 +1,102 @@
+version: "3.8"
+
+# docker run --name keycloak-ms -p 8081:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:25.0.1 start-dev
+
+services:
+  ms-rabbitmq:
+    image: rabbitmq:3.13-management
+    container_name: ms-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    restart: unless-stopped
+    networks:
+      - ms-rabbitmq-network
+
+  ms-keycloak:
+    image: quay.io/keycloak/keycloak:25.0.1
+    container_name: ms-keycloak
+    command:
+      - start-dev
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    ports:
+      - "8080:8080"
+    networks:
+      - ms-rabbitmq-network
+
+  eureka-server:
+    container_name: eureka-server
+    build: ./projeto-ms/eureka-server
+    restart: unless-stopped
+    ports:
+      - "8761:8761"
+    volumes:
+      - ms-rabbitmq-volume:/temp
+    networks:
+      - ms-rabbitmq-network
+
+  cloud-gateway:
+    container_name: cloud-gateway
+    build: ./projeto-ms/cloud-gateway
+    environment:
+      EUREKA_SERVER: eureka-server
+      KEYCLOAK_SERVER: ms-keycloak
+      KEYCLOAK_PORT: 8080
+    ports:
+      - "8765:8765"
+    depends_on:
+      - eureka-server
+    restart: unless-stopped
+    volumes:
+      - ms-rabbitmq-volume:/temp
+    networks:
+      - ms-rabbitmq-network
+
+  cliente-service:
+    container_name: cliente-service
+    build: ./projeto-ms/cliente
+    environment:
+      EUREKA_SERVER: eureka-server
+    depends_on:
+      - eureka-server
+    restart: unless-stopped
+    volumes:
+      - ms-rabbitmq-volume:/temp
+    networks:
+      - ms-rabbitmq-network
+
+  cartao-service:
+    container_name: cartao-service
+    build: ./projeto-ms/cartao
+    environment:
+      EUREKA_SERVER: eureka-server
+      RABBITMQ_SERVER: ms-rabbitmq
+    depends_on:
+      - eureka-server
+    restart: unless-stopped
+    volumes:
+      - ms-rabbitmq-volume:/temp
+    networks:
+      - ms-rabbitmq-network
+
+  avaliador-credito-service:
+    container_name: avaliador-credito-service
+    build: ./projeto-ms/avaliador-credito
+    environment:
+      EUREKA_SERVER: eureka-server
+      RABBITMQ_SERVER: ms-rabbitmq
+    depends_on:
+      - eureka-server
+    restart: unless-stopped
+    volumes:
+      - ms-rabbitmq-volume:/temp
+    networks:
+      - ms-rabbitmq-network
+
+networks:
+  ms-rabbitmq-network:
+
+volumes:
+  ms-rabbitmq-volume: {}

@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: cartao-service
+  rabbitmq:
+    host: ${RABBITMQ_SERVER}
+    port: 5672
+    username: guest
+    password: guest
+
+server:
+  port: 0
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://ms-eureka-server:err-vremss-keaue@${EUREKA_SERVER}:8761/eureka
+  instance:
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    preferIpAddress: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+logging:
+  file:
+    name: ./logs/log-file.log
+  level:
+    root: info
+
+mq:
+  queues:
+    emissaoCartao: emissao-cartoes

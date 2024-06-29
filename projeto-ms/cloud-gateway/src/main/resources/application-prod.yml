@@ -24,7 +24,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuerUri: http://localhost:8080/realms/ms-rabbitmq-realm
+          issuerUri: http://${KEYCLOAK_SERVER}:${KEYCLOAK_PORT}/realms/ms-rabbitmq-realm
 
 server:
   port: 8765
@@ -32,7 +32,7 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://ms-eureka-server:err-vremss-keaue@localhost:8761/eureka
+      defaultZone: http://ms-eureka-server:err-vremss-keaue@${EUREKA_SERVER}:8761/eureka
   instance:
     preferIpAddress: true
 
