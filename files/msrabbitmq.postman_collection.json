@@ -1,0 +1,497 @@
+{
+	"info": {
+		"_postman_id": "e5c2a551-f2ea-48c7-8ca5-7760a9d0aa60",
+		"name": "Projeto ms RabbitMQ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20783374"
+	},
+	"item": [
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "save",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Jorge\",\r\n    \"cpf\": \"20968510094\",\r\n    \"idade\": 21\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8765/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find by cpf",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/clientes?cpf=20968510094",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"clientes"
+							],
+							"query": [
+								{
+									"key": "cpf",
+									"value": "20968510094"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "health check",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/clientes/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"clientes",
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cartao",
+			"item": [
+				{
+					"name": "health check",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/cartoes/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"cartoes",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Cartao Black\",\r\n    \"bandeira\": \"VISA\",\r\n    \"renda\": 5000,\r\n    \"limite\": 20000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8765/cartoes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"cartoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find by renda",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/cartoes?minRenda=4000&maxRenda=6000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"cartoes"
+							],
+							"query": [
+								{
+									"key": "minRenda",
+									"value": "4000"
+								},
+								{
+									"key": "maxRenda",
+									"value": "6000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find by cliente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/cartoes?cpf=20968510094",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"cartoes"
+							],
+							"query": [
+								{
+									"key": "cpf",
+									"value": "20968510094"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Avaliador de Credito",
+			"item": [
+				{
+					"name": "health check",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/avaliacoes-credito/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"avaliacoes-credito",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "situacao cliente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/avaliacoes-credito/situacao-cliente?cpf=20968510094",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"avaliacoes-credito",
+								"situacao-cliente"
+							],
+							"query": [
+								{
+									"key": "cpf",
+									"value": "20968510094"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "avaliacao de credito",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cpf\": \"20968510094\",\r\n    \"renda\": 5000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8765/avaliacoes-credito",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"avaliacoes-credito"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "solicitacao cartao",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cartaoId\": 1,\r\n    \"cpf\": \"20968510094\",\r\n    \"endereco\": \"Rua Dom Pedro\",\r\n    \"limiteLiberado\": 42000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8765/avaliacoes-credito/solicitacao-cartao",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"avaliacoes-credito",
+								"solicitacao-cartao"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Keycloak AccessToken",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "5vmaGvq6Xwq6cG3JjT2fhAEGIrCIMHfz",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "http://localhost:8080/realms/ms-rabbitmq-realm/protocol/openid-connect/token",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "ms-credito",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Eureka basic auth",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "ms-eureka-server",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "err-vremss-keaue",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8761",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8761"
+				}
+			},
+			"response": []
+		}
+	]
+}

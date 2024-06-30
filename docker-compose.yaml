@@ -1,7 +1,5 @@
 version: "3.8"
 
-# docker run --name keycloak-ms -p 8081:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:25.0.1 start-dev
-
 services:
   ms-rabbitmq:
     image: rabbitmq:3.13-management
