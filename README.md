@@ -6,8 +6,6 @@ Spring Cloud, Eureka, Microserviços, rabbitMQ, Keycloak - JAVA 21
 
 ### Como rodar o projeto inteiro no docker
 
-- Apagar os arquivos "application.yaml" e renomear os "application-prod.yaml" para "application.yaml".
-
 - Rodar o comando "mvn clean package -DskipTests=true" em cada um dos serviços.
 
 - No diretorio do arquivo docker-compose.yaml executar o comando "docker compose up".
