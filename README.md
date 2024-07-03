@@ -6,20 +6,15 @@ Spring Cloud, Eureka, Microserviços, rabbitMQ, Keycloak - JAVA 21
 
 ### Como rodar o projeto inteiro no docker
 
-- Rodar o comando "mvn clean package -DskipTests=true" em cada um dos serviços.
-
+- Empacotar os serviços com o comando "mvn clean package -DskipTests=true".
 - No diretorio do arquivo docker-compose.yaml executar o comando "docker compose up".
+- Realizar a configuração do RabbitMQ e Keycloak.
 
 ### Como rodar apenas o RabbitMQ e Keycloak para rodar o projeto local
 
 - docker run --name rabbitmq-ms -p 5672:5672 -p 15672:15672 rabbitmq:3.13-management
-
 - docker run --name keycloak-ms -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:25.0.1 start-dev
-
 - Realizar a configuração do RabbitMQ e Keycloak.
-
-- Rodar o comando "mvn clean install" em cada um dos serviços.
-
 - Rodar as aplicaçoes (o eureka-server deve ser executado primeiro).
 
 ### Como configurar o RabbitMQ
